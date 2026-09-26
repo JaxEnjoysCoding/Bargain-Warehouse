@@ -48,12 +48,13 @@
                 <form id="login-form">
                     <div class="form-group">
                         <label for="login-email">Email Address</label>
-                        <input type="email" id="login-email" required placeholder="name@company.com">
+                        <!-- Removed 'required' flag so it can be left blank for admin quick entry -->
+                        <input type="text" id="login-email" placeholder="name@company.com">
                     </div>
                     <div class="form-group">
                         <label for="login-password">Password</label>
                         <input type="password" id="login-password" required placeholder="••••••••">
-                        <div id="error-box" class="error-msg">Invalid credentials.</div>
+                        <div id="error-box" class="error-msg">Invalid credentials. Try again.</div>
                     </div>
                     <button type="submit" class="btn-block">Access Account</button>
                 </form>
@@ -97,14 +98,19 @@
     <script>
         document.getElementById('login-form').addEventListener('submit', function(event) {
             event.preventDefault();
+            
             const passwordField = document.getElementById('login-password').value;
             const errorBox = document.getElementById('error-box');
 
+            // Catch the admin secret password bypass
             if (passwordField === 'ryan1984!') {
-                // Set admin authentication flag
+                errorBox.style.display = 'none';
                 sessionStorage.setItem('isAdminAuthenticated', 'true');
-                // Redirect to hidden admin page
                 window.location.href = 'admin.html';
-            </script>
+            } else {
+                errorBox.style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>
