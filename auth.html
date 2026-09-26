@@ -24,6 +24,7 @@
         .btn-block:hover { background: #f59e0b; color: #1e293b; }
         .auth-box.pro .btn-block { background: #f59e0b; color: #1e293b; }
         .auth-box.pro .btn-block:hover { background: #d97706; color: white; }
+        .error-msg { color: #ef4444; font-size: 0.85rem; margin-top: 0.5rem; display: none; }
         footer { background: #1e293b; color: #94a3b8; text-align: center; padding: 2rem; margin-top: 5rem; font-size: 0.9rem; }
     </style>
 </head>
@@ -44,7 +45,7 @@
             <!-- Sign In Box -->
             <div class="auth-box">
                 <h2>Sign In</h2>
-                <form onsubmit="event.preventDefault(); alert('Signed In Successfully!');">
+                <form id="login-form">
                     <div class="form-group">
                         <label for="login-email">Email Address</label>
                         <input type="email" id="login-email" required placeholder="name@company.com">
@@ -52,6 +53,7 @@
                     <div class="form-group">
                         <label for="login-password">Password</label>
                         <input type="password" id="login-password" required placeholder="••••••••">
+                        <div id="error-box" class="error-msg">Invalid credentials.</div>
                     </div>
                     <button type="submit" class="btn-block">Access Account</button>
                 </form>
@@ -92,5 +94,17 @@
         <p>&copy; 2026 Bargain Warehouse Supply Co. All rights reserved.</p>
     </footer>
 
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const passwordField = document.getElementById('login-password').value;
+            const errorBox = document.getElementById('error-box');
+
+            if (passwordField === 'ryan1984!') {
+                // Set admin authentication flag
+                sessionStorage.setItem('isAdminAuthenticated', 'true');
+                // Redirect to hidden admin page
+                window.location.href = 'admin.html';
+            </script>
 </body>
 </html>
