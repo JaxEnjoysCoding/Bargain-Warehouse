@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Portal | Bargain Warehouse</title>
+    <title>Shop Materials | Bargain Warehouse</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #f4f6f9; color: #333; }
@@ -11,19 +11,19 @@
         header h1 { font-size: 1.5rem; color: #f59e0b; }
         nav a { color: white; text-decoration: none; margin-left: 1.5rem; font-weight: 500; }
         nav a:hover, nav a.active { color: #f59e0b; }
-        .container { max-width: 1000px; margin: 4rem auto; padding: 0 1rem; }
-        .auth-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
-        .auth-box { background: white; padding: 2.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 4px solid #1e293b; }
-        .auth-box.pro { border-top-color: #f59e0b; }
-        .auth-box h2 { margin-bottom: 1.5rem; color: #1e293b; }
-        .form-group { margin-bottom: 1.25rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: #475569; }
-        .form-group input, .form-group select { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 1rem; }
-        .form-group input:focus { outline: 2px solid #f59e0b; border-color: transparent; }
-        .btn-block { width: 100%; background: #1e293b; color: white; padding: 0.75rem; border: none; border-radius: 4px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .btn-block:hover { background: #f59e0b; color: #1e293b; }
-        .auth-box.pro .btn-block { background: #f59e0b; color: #1e293b; }
-        .auth-box.pro .btn-block:hover { background: #d97706; color: white; }
+        .container { max-width: 1200px; margin: 3rem auto; padding: 0 1rem; }
+        .page-title { margin-bottom: 2rem; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+        .product-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
+        .product-img { width: 100%; height: 200px; background: #cbd5e1; object-fit: cover; }
+        .product-info { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .product-title { font-size: 1.2rem; color: #1e293b; margin-bottom: 0.5rem; }
+        .product-desc { font-size: 0.9rem; color: #64748b; margin-bottom: 0.5rem; }
+        .stock-tag { font-size: 0.8rem; font-weight: 600; color: #475569; margin-bottom: 1rem; display: block; }
+        .product-meta { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+        .price { font-size: 1.4rem; font-weight: bold; color: #10b981; }
+        .btn-sm { background: #1e293b; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .btn-sm:hover { background: #f59e0b; color: #1e293b; }
         footer { background: #1e293b; color: #94a3b8; text-align: center; padding: 2rem; margin-top: 5rem; font-size: 0.9rem; }
     </style>
 </head>
@@ -33,58 +33,78 @@
         <h1>🏗️ Bargain Warehouse</h1>
         <nav>
             <a href="index.html">Home</a>
-            <a href="buy.html">Shop Materials</a>
-            <a href="auth.html" class="active">Sign In / Up</a>
+            <a href="buy.html" class="active">Shop Materials</a>
+            <a href="auth.html">Sign In / Up</a>
         </nav>
     </header>
 
     <main class="container">
-        <div class="auth-wrapper">
-            
-            <!-- Sign In Box -->
-            <div class="auth-box">
-                <h2>Sign In</h2>
-                <form onsubmit="event.preventDefault(); alert('Signed In Successfully!');">
-                    <div class="form-group">
-                        <label for="login-email">Email Address</label>
-                        <input type="email" id="login-email" required placeholder="name@company.com">
+        <h2 class="page-title">Current Materials Inventory</h2>
+        
+        <div class="grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://unsplash.com'); background-size:cover;"></div>
+                <div class="product-info">
+                    <div>
+                        <h3 class="product-title">Premium Framing Lumber</h3>
+                        <p class="product-desc">Standard 2x4 stud, 8ft length. Kiln-dried Douglas Fir ideal for structural framing.</p>
+                        <span class="stock-tag">Available Stock: <span id="p1-stock-val">1420</span> units</span>
                     </div>
-                    <div class="form-group">
-                        <label for="login-password">Password</label>
-                        <input type="password" id="login-password" required placeholder="••••••••">
+                    <div class="product-meta">
+                        <span class="price">\$<span id="p1-price-val">3.85</span></span>
+                        <button class="btn-sm" onclick="alert('Added to cart!')">Add to Cart</button>
                     </div>
-                    <button type="submit" class="btn-block">Access Account</button>
-                </form>
+                </div>
             </div>
 
-            <!-- Sign Up Box -->
-            <div class="auth-box pro">
-                <h2>Register Pro Account</h2>
-                <form onsubmit="event.preventDefault(); alert('Registration Submitted!');">
-                    <div class="form-group">
-                        <label for="reg-name">Full Name / Contact</label>
-                        <input type="text" id="reg-name" required placeholder="John Doe">
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://unsplash.com'); background-size:cover;"></div>
+                <div class="product-info">
+                    <div>
+                        <h3 class="product-title">Portland Cement Bag</h3>
+                        <p class="product-desc">High-strength Type I/II grey concrete mix. Perfect for structural foundations, paths, and footings. 90lb bag.</p>
+                        <span class="stock-tag">Available Stock: <span id="p2-stock-val">450</span> units</span>
                     </div>
-                    <div class="form-group">
-                        <label for="reg-email">Business Email</label>
-                        <input type="email" id="reg-email" required placeholder="john@builder.com">
+                    <div class="product-meta">
+                        <span class="price">\$<span id="p2-price-val">14.50</span></span>
+                        <button class="btn-sm" onclick="alert('Added to cart!')">Add to Cart</button>
                     </div>
-                    <div class="form-group">
-                        <label for="reg-account">Account Type</label>
-                        <select id="reg-account">
-                            <option value="individual">Individual / DIYer</option>
-                            <option value="contractor">General Contractor</option>
-                            <option value="commercial">Commercial Developer</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-password">Create Password</label>
-                        <input type="password" id="reg-password" required placeholder="Minimum 8 characters">
-                    </div>
-                    <button type="submit" class="btn-block">Create Account</button>
-                </form>
+                </div>
             </div>
 
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://unsplash.com'); background-size:cover;"></div>
+                <div class="product-info">
+                    <div>
+                        <h3 class="product-title">Galvanized Roofing Nails</h3>
+                        <p class="product-desc">1-1/4 inch ring shank hardware with extreme corrosion resistance. 5lb bulk box.</p>
+                        <span class="stock-tag">Available Stock: <span id="p3-stock-val">85</span> units</span>
+                    </div>
+                    <div class="product-meta">
+                        <span class="price">\$<span id="p3-price-val">22.00</span></span>
+                        <button class="btn-sm" onclick="alert('Added to cart!')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://unsplash.com'); background-size:cover;"></div>
+                <div class="product-info">
+                    <div>
+                        <h3 class="product-title">Drywall Panels (4x8)</h3>
+                        <p class="product-desc">1/2-inch thick tapered-edge gypsum board panels. Formulated for fire resistance and easy finishing.</p>
+                        <span class="stock-tag">Available Stock: <span id="p4-stock-val">310</span> units</span>
+                    </div>
+                    <div class="product-meta">
+                        <span class="price">\$<span id="p4-price-val">15.95</span></span>
+                        <button class="btn-sm" onclick="alert('Added to cart!')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -92,5 +112,19 @@
         <p>&copy; 2026 Bargain Warehouse Supply Co. All rights reserved.</p>
     </footer>
 
+    <script>
+        // Pull current system updates from localStorage or load structural standard fallback values
+        const currentData = JSON.parse(localStorage.getItem('warehouseInventory'));
+        
+        if (currentData) {
+            for(let key in currentData) {
+                const structuralPriceElement = document.getElementById(`${key}-price-val`);
+                const structuralStockElement = document.getElementById(`${key}-stock-val`);
+                
+                if(structuralPriceElement) structuralPriceElement.innerText = currentData[key].price.toFixed(2);
+                if(structuralStockElement) structuralStockElement.innerText = currentData[key].stock;
+            }
+        }
+    </script>
 </body>
 </html>
